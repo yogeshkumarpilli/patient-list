@@ -1,17 +1,35 @@
 import { Flex } from '@chakra-ui/react';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Filters, PatientFilters } from '../components/patient-filters';
 import { PatientsTable } from '../components/patient-table';
+import { PatientIndication } from '../queries/patients';
 
 interface Props {
 }
 
 export const PatientsList: React.FC<PropsWithChildren<Props>> = () => {
+  const [search] = useSearchParams();
+
   const [filters, setFilters] = useState<Filters>({
-    patientName: '',
-    indication: undefined,
-    age: [0, 100]
+    patientName: search.get('patientName') ?? '',
+    indication: search.get('indication') as PatientIndication ?? '',
+    age: [
+      parseInt(search.get('ageFrom')! ?? 0),
+      parseInt(search.get('ageTo')! ?? 100)
+    ]
   });
+
+  useEffect(() => {
+    setFilters({
+      patientName: search.get('patientName') ?? '',
+      indication: search.get('indication') as PatientIndication ?? '',
+      age: [
+        parseInt(search.get('ageFrom')! ?? 0),
+        parseInt(search.get('ageTo')! ?? 100)
+      ]
+    });
+  }, [search]);
 
   return (
     <>

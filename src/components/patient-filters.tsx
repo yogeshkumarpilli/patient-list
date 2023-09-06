@@ -3,6 +3,7 @@ import { Box, Button, FormControl, FormLabel, HStack, Input, RangeSlider, RangeS
 import React, { PropsWithChildren, useCallback, useEffect, useMemo } from 'react';
 import { PatientIndication } from '../queries/patients';
 import { useField } from '../utils';
+import { useSearchParams } from 'react-router-dom';
 
 export interface Filters {
   patientName?: string;
@@ -12,13 +13,13 @@ export interface Filters {
 
 interface Props {
   filters: Filters,
-  onFilter(filters: Filters): void;
 }
 
 const MIN_AGE = 0;
 const MAX_AGE = 100;
 
-export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters, onFilter }) => {
+export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters }) => {
+  const [_, setSearch] = useSearchParams();
   const patientName = useField(filters.patientName);
   const indication = useField<PatientIndication>(filters.indication);
   const ageRange = useField<number[]>(filters.age);
@@ -29,9 +30,9 @@ export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters, on
   } = useDisclosure();
 
   const onClear = useCallback(() => {
-    patientName.reset();
-    indication.reset();
-    ageRange.reset();
+    patientName.setValue('');
+    indication.setValue('')
+    ageRange.setValue([MIN_AGE, MAX_AGE]);
   }, []);
 
   const showClearButton = useMemo(() => {
@@ -40,12 +41,15 @@ export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters, on
 
   useEffect(() => {
     if (updatingAgeRange) { return; }
-    onFilter({
-      patientName: patientName.value,
-      indication: indication.value,
-      age: ageRange.value,
+    setSearch({
+      patientName: patientName.value!,
+      indication: indication.value!,
+      ageFrom: `${ageRange.value![0]}`,
+      ageTo: `${ageRange.value![1]}`
+    }, {
+      replace: true
     });
-  }, [patientName.value, indication.value, ageRange.value, onFilter, updatingAgeRange]);
+  }, [patientName.value, indication.value, ageRange.value, setSearch, updatingAgeRange]);
 
   return (
     <HStack spacing="12" flex={1} padding="4" align="end">
