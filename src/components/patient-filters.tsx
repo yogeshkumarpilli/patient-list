@@ -6,21 +6,22 @@ import { useField } from '../utils';
 
 export interface Filters {
   patientName?: string;
-  indication?: string;
+  indication?: PatientIndication;
   age?: number[]
 }
 
 interface Props {
+  filters: Filters,
   onFilter(filters: Filters): void;
 }
 
 const MIN_AGE = 0;
 const MAX_AGE = 100;
 
-export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ onFilter }) => {
-  const patientName = useField('');
-  const indication = useField<PatientIndication | ''>('');
-  const ageRange = useField<number[]>([MIN_AGE, MAX_AGE]);
+export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters, onFilter }) => {
+  const patientName = useField(filters.patientName);
+  const indication = useField<PatientIndication>(filters.indication);
+  const ageRange = useField<number[]>(filters.age);
   const {
     isOpen: updatingAgeRange,
     onOpen: startUpdatingAgeRange,
@@ -40,8 +41,8 @@ export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ onFilter })
   useEffect(() => {
     if (updatingAgeRange) { return; }
     onFilter({
-      patientName: patientName.value ?? '',
-      indication: indication.value ?? '',
+      patientName: patientName.value,
+      indication: indication.value,
       age: ageRange.value,
     });
   }, [patientName.value, indication.value, ageRange.value, onFilter, updatingAgeRange]);
