@@ -5,7 +5,7 @@ import { useToast } from "@chakra-ui/react";
 
 export type PatientIndication =
 | 'post_pvc_ablation'
-| 'post_pac_ablation'
+| 'palpitations'
 | 'post_tavi'
 
 export interface Patient {

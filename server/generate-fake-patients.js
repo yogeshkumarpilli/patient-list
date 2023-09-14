@@ -2,7 +2,7 @@ import { fakerFR as faker } from "@faker-js/faker";
 
 const indication = [
   'post_pvc_ablation',
-  'post_pac_ablation',
+  'palpitations',
   'post_tavi',
 ]
 

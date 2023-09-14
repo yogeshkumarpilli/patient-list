@@ -10,7 +10,7 @@ interface Props {
 export const IndicationBadge: React.FC<PropsWithChildren<Props>> = ({ children }) => {
   const colorScheme = useMemo(() => {
     switch(children) {
-      case 'post_pac_ablation':
+      case 'palpitations':
         return 'pink';
       case 'post_pvc_ablation':
         return 'purple';

@@ -19,9 +19,9 @@ const MIN_AGE = 0;
 const MAX_AGE = 100;
 
 export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters }) => {
-  const [_, setSearch] = useSearchParams();
+  const [, setSearch] = useSearchParams();
   const patientName = useField(filters.patientName);
-  const indication = useField<PatientIndication>(filters.indication);
+  const indication = useField<PatientIndication | ''>(filters.indication);
   const ageRange = useField<number[]>(filters.age);
   const {
     isOpen: updatingAgeRange,
@@ -62,7 +62,7 @@ export const PatientFilters: React.FC<PropsWithChildren<Props>> = ({ filters }) 
         <Select value={indication.value} onChange={indication.onChange}>
           <option value="">--</option>
           <option value="post_pvc_ablation">Post PVC Ablation</option>
-          <option value="post_pac_ablation">Post PAC Ablation</option>
+          <option value="palpitations">Palpitations</option>
           <option value="post_tavi">Post TAVI</option>
         </Select>
       </FormControl>

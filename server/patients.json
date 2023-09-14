@@ -12,7 +12,7 @@
       "id": "799f7b35-018a-4b1b-8469-d076af36808e",
       "first_name": "Ismérie",
       "last_name": "Lefevre",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1986-01-17T11:31:15.525Z",
       "creation_date": "2023-03-27T19:45:16.686Z"
     },
@@ -36,7 +36,7 @@
       "id": "e694341b-0ac5-47d8-9eba-4768b0a57310",
       "first_name": "Guy",
       "last_name": "Nicolas",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1954-07-15T05:13:40.749Z",
       "creation_date": "2023-07-12T15:07:32.052Z"
     },
@@ -44,7 +44,7 @@
       "id": "210e22f4-ac93-47ab-a684-2b516a69f6f1",
       "first_name": "Clotilde",
       "last_name": "Sanchez",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1985-06-12T03:47:36.208Z",
       "creation_date": "2023-01-25T11:14:06.013Z"
     },
@@ -148,7 +148,7 @@
       "id": "a4289d40-9a41-406f-8acc-4c2b1d857cc4",
       "first_name": "Auriane",
       "last_name": "Duval",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1969-06-21T00:18:55.243Z",
       "creation_date": "2023-06-25T23:20:15.004Z"
     },
@@ -156,7 +156,7 @@
       "id": "214d0e02-76f8-4561-9f30-bd27ea0e7f38",
       "first_name": "Hugues",
       "last_name": "Barre",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1987-01-11T06:43:35.865Z",
       "creation_date": "2022-09-14T01:47:16.020Z"
     },
@@ -172,7 +172,7 @@
       "id": "968d8ec5-bc11-4c92-96b9-8d91decfbf0d",
       "first_name": "Armeline",
       "last_name": "Blanc",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1952-12-06T13:02:43.584Z",
       "creation_date": "2023-04-12T20:14:34.353Z"
     },
@@ -244,7 +244,7 @@
       "id": "fcd89623-162f-4d59-9a12-6a96c6a5f1d2",
       "first_name": "Gaston",
       "last_name": "Collet",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1952-05-09T03:50:08.980Z",
       "creation_date": "2023-06-10T04:17:00.402Z"
     },
@@ -260,7 +260,7 @@
       "id": "801198d4-2895-4516-bb71-6c223110cdfd",
       "first_name": "Victor",
       "last_name": "Martinez",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1975-02-03T04:46:32.157Z",
       "creation_date": "2023-04-04T15:24:26.896Z"
     },
@@ -268,7 +268,7 @@
       "id": "83bc2486-ec47-4ebb-9b4f-1b124458a9d2",
       "first_name": "Archambaud",
       "last_name": "Berger",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1959-12-18T13:11:13.121Z",
       "creation_date": "2023-05-31T20:03:47.233Z"
     },
@@ -316,7 +316,7 @@
       "id": "0f3f68f9-e02e-4cf1-8cca-19150640c6fb",
       "first_name": "Noël",
       "last_name": "Faure",
-      "indication": "post_pac_ablation",
+      "indication": "palpitations",
       "birth_date": "1974-03-12T09:47:04.234Z",
       "creation_date": "2023-01-16T03:41:29.828Z"
     }

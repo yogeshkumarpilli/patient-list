@@ -62,7 +62,7 @@ export const PatientForm: React.FC<PropsWithChildren<Props>> = () => {
           <Select value={indication.value} onChange={indication.onChange}>
             <option value="">--</option>
             <option value="post_pvc_ablation">Post PVC Ablation</option>
-            <option value="post_pac_ablation">Post PAC Ablation</option>
+            <option value="palpitations">Palpitations</option>
             <option value="post_tavi">Post TAVI</option>
           </Select>
         </FormControl>

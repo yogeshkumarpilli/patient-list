@@ -12,8 +12,8 @@ export const dateStringToHuman = (date: string) => new Date(date).toLocaleDateSt
 
 export const indicationToString = (indication: PatientIndication): string => {
   switch (indication) {
-    case 'post_pac_ablation':
-      return 'Post PAC Ablation';
+    case 'palpitations':
+      return 'Palpitations';
     case 'post_pvc_ablation':
       return 'Post PVC Ablation';
     case "post_tavi":
