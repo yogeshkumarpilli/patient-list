@@ -1,6 +1,6 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { Box, Text, Th } from '@chakra-ui/react';
-import React, { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { PatientSorting, SortingDirection } from '../queries/patients';
 
 interface Props {
@@ -8,12 +8,26 @@ interface Props {
   currentSorting: PatientSorting;
   currentDirection: SortingDirection;
   onActive(sorting: PatientSorting, direction: SortingDirection): void;
+  onReset(): void;
 }
 
-export const ThSorted: React.FC<PropsWithChildren<Props>> = ({ by, currentSorting, currentDirection, onActive, children }) => {
+export const ThSorted: React.FC<PropsWithChildren<Props>> = ({ by, currentSorting, currentDirection, onActive, onReset, children }) => {
+  const [ternary, setTernary] = useState(0);
+
+  useEffect(() => {
+    if (ternary > 0 && by !== currentSorting) {
+      setTernary(0);
+    }
+  }, [currentSorting, by, ternary]);
+
   const onSort = useCallback(() => {
-    onActive(by, currentDirection == 'asc' ? 'desc' : 'asc');
-  }, [onActive, by, currentDirection]);
+    if (ternary === 2) {
+      onReset();
+    } else {
+      onActive(by, currentDirection == 'asc' ? 'desc' : 'asc');
+    }
+    setTernary((ternary + 1) % 3);
+  }, [onActive, onReset, by, currentDirection, ternary]);
 
   const icon = currentDirection === 'asc' ? <ChevronUpIcon /> : <ChevronDownIcon />;
   const displayIcon = by === currentSorting;

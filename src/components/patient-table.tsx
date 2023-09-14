@@ -1,4 +1,4 @@
-import { Highlight, Table, Tbody, Td, Thead, Tr } from '@chakra-ui/react';
+import { Highlight, Table, Tbody, Td, Thead, Tr, usePrevious } from '@chakra-ui/react';
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import { PatientSorting, SortingDirection, usePatients } from '../queries/patients';
 import { dateStringToAge, dateStringToHuman } from '../utils';
@@ -21,6 +21,11 @@ export const PatientsTable: React.FC<PropsWithChildren<Props>> = ({ filters }) =
     setSortingDirection(direction);
   }, []);
 
+  const onReset = useCallback(() => {
+    setSorting('creation_date');
+    setSortingDirection('desc');
+  }, [])
+
   if (patients.data?.length === 0) {
     return <EmptyList />
   }
@@ -34,24 +39,28 @@ export const PatientsTable: React.FC<PropsWithChildren<Props>> = ({ filters }) =
             currentDirection={sortingDirection}
             currentSorting={sorting}
             onActive={onActive}
+            onReset={onReset}
           >Patient Name</ThSorted>
           <ThSorted 
             by='indication'
             currentDirection={sortingDirection}
             currentSorting={sorting}
             onActive={onActive}
+            onReset={onReset}
           >Indication</ThSorted>
           <ThSorted 
             by='birth_date'
             currentDirection={sortingDirection}
             currentSorting={sorting}
             onActive={onActive}
+            onReset={onReset}
           >Age</ThSorted>
           <ThSorted 
             by='creation_date'
             currentDirection={sortingDirection}
             currentSorting={sorting}
             onActive={onActive}
+            onReset={onReset}
           >Creation date</ThSorted>
         </Tr>
       </Thead>

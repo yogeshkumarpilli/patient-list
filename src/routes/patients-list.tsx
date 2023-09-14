@@ -34,7 +34,7 @@ export const PatientsList: React.FC<PropsWithChildren<Props>> = () => {
   return (
     <>
       <Flex width="100%" flex={1} shadow="lg" borderRadius="md" marginY="8">
-        <PatientFilters filters={filters} onFilter={setFilters} />
+        <PatientFilters filters={filters} />
       </Flex>
       <PatientsTable filters={filters} />
     </>
