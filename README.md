@@ -1,6 +1,6 @@
 # Patient List
 
-The main goal of this interview is for us to asses your level of expertise in the QA automation ecosystem, but it's also to understand your habits as Software QA Automation and evaluate your skills. 
+The main goal of this interview is for us to assess your level of expertise in the QA automation ecosystem, but it's also to understand your habits as Software QA Automation and evaluate your skills. 
 
 It's important for us to have access to your homework BEFORE the interview to have time to review it and prepare some constructive feedbacks. The goal of this interview is for all of us to learn from each other.
 
@@ -20,10 +20,14 @@ In this application, you should be able to do :
 
 A particular attention will be taken to your code structure, the scenarios and the coverage of the application.
 
+To complete the homework you can choose either of the following options:
 
-We already implemented a Playwright setup with two existing tests (one that needs to be fixed and one that needs to be improved) but you can choose any of the following framework : 
- - Cypress
- - Selenium
+1. Improve the existing Playwright tests that you can find in the project:
+    - improve how the tests are written, and how they're running
+    - fix the test that doesn't work, explain what was broken
+    - add new test cases for features that were not correctly covered
+2. or Add brand new tests using the framework of you choice: Cypress, Selenium, surprise us!
+
 
 You can choose any of those frameworks, but we expect a clean file structure on your final project.
 
