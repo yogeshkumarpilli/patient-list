@@ -116,3 +116,95 @@ export const useInvitePatient = () => {
     },
   })
 }
+
+
+export const useUpdatePatient = (id: string) => {
+  const queryClient = useQueryClient();
+  const successToast = useToast({
+    title: 'Patient modified successfully',
+    colorScheme: 'green',
+    duration: 3000,
+    isClosable: true,
+    position: 'top',
+  })
+
+  const errorToast = useToast({
+    duration: 3000,
+    colorScheme: 'red',
+    position: 'top',
+    isClosable: true,
+  })
+
+  return useMutation<Patient, { reason: string, parameters: string[] }, Omit<Patient, 'id' | 'creation_date'>>({
+    async mutationFn(patient) {
+      const resp = await fetch(`/api/patients/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(patient)
+      })
+
+      if (resp.status === 400) {
+        throw await resp.json()
+      }
+
+      return await resp.json();
+    },
+    onError(error) {
+      errorToast({
+        title: error.reason,
+        description: `${error.parameters.map(key => patientKeyToString(key))}`,
+      })
+    },
+    onSuccess() {
+      queryClient.invalidateQueries('patients');
+      successToast();
+    },
+  })
+}
+
+export const useDeletePatient = (id: string) => {
+  const queryClient = useQueryClient();
+  const successToast = useToast({
+    title: 'Patient deleted successfully',
+    colorScheme: 'green',
+    duration: 3000,
+    isClosable: true,
+    position: 'top',
+  })
+
+  const errorToast = useToast({
+    duration: 3000,
+    colorScheme: 'red',
+    position: 'top',
+    isClosable: true,
+  })
+
+  return useMutation<Patient, { reason: string, parameters: string[] }, Omit<Patient, 'id' | 'creation_date'>>({
+    async mutationFn() {
+      const resp = await fetch(`/api/patients/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (resp.status === 400) {
+        throw await resp.json()
+      }
+
+      return await resp.json();
+    },
+    onError(error) {
+      errorToast({
+        title: error.reason,
+        description: `${error.parameters.map(key => patientKeyToString(key))}`,
+      })
+    },
+    onSuccess() {
+      queryClient.invalidateQueries('patients');
+      successToast();
+    },
+  })
+}
