@@ -16,7 +16,7 @@ import {
     VStack,
   } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom';
-import { useCallback, FormEvent, useState, useRef, FC } from 'react';
+import { useCallback, FormEvent, FC } from 'react';
 import { Patient, useUpdatePatient, PatientIndication } from '../queries/patients';
 import { useField } from '../utils';
 
@@ -33,7 +33,7 @@ export const EditModal: FC<Props> = ({ patient }) => {
 
   const onSubmit = useCallback((evt: FormEvent) => {
     evt.preventDefault();
-    onClose();
+    
     updatePatient.mutate({
       first_name: firstName.value!,
       last_name: lastName.value!,
@@ -41,21 +41,14 @@ export const EditModal: FC<Props> = ({ patient }) => {
       indication: indication.value!,
     }, {
       onSuccess() {
+        onClose();
         navigate('/');
       }
     })
   }, [updatePatient, firstName.value, lastName.value, birthDate.value, indication.value, navigate]);
   
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg='blackAlpha.300'
-      backdropFilter='blur(10px) hue-rotate(90deg)'
-    />
-  )
-
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [overlay, setOverlay] = useState(<OverlayOne />)
-  const initialRef = useRef(null)
+
   return (
     <VStack
     onSubmit={onSubmit}
@@ -63,21 +56,23 @@ export const EditModal: FC<Props> = ({ patient }) => {
     >
       <MenuItem
         onClick={() => {
-          setOverlay(<OverlayOne />)
           onOpen()
         }}
       >
         Edit
       </MenuItem>
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        {overlay}
+      <ModalOverlay
+        bg='blackAlpha.300'
+        backdropFilter='blur(10px) hue-rotate(90deg)'
+      />
         <ModalContent>
           <ModalHeader>Edit patient information</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl isRequired>
               <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} placeholder='First name' value={firstName.value} onChange={firstName.onChange} />
+              <Input placeholder='First name' value={firstName.value} onChange={firstName.onChange} />
             </FormControl>
 
             <FormControl isRequired>

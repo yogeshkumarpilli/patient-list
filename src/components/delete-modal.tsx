@@ -11,7 +11,7 @@ import {
     Button,
     useDisclosure,
   } from '@chakra-ui/react';
-import { useState, FC, useCallback, FormEvent } from 'react';
+import { FC, useCallback, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Patient, useDeletePatient } from '../queries/patients';
 
@@ -25,41 +25,31 @@ export const DeleteModal: FC<Props> = ({ patient }) => {
 
   const onSubmit = useCallback((evt: FormEvent) => {
     evt.preventDefault();
-    onClose();
-    deletePatient.mutate({
-      first_name: '',
-      last_name: '',
-      birth_date: '',
-      indication: 'post_pvc_ablation',
-    }, {
+
+    deletePatient.mutate(undefined, {
       onSuccess() {
+        onClose();
         navigate('/');
       }
     })
   }, [deletePatient, navigate]);
   
-  const OverlayOne = () => (
-      <ModalOverlay
-        bg='blackAlpha.300'
-        backdropFilter='blur(10px) hue-rotate(90deg)'
-      />
-    )
-
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [overlay, setOverlay] = useState(<OverlayOne />)
     return (
       <VStack
       >
         <MenuItem
           onClick={() => {
-            setOverlay(<OverlayOne />)
             onOpen()
           }}
         >
           Delete
         </MenuItem>
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
-          {overlay}
+        <ModalOverlay
+          bg='blackAlpha.300'
+          backdropFilter='blur(10px) hue-rotate(90deg)'
+        />
           <ModalContent>
             <ModalHeader>Delete patient {patient.first_name} {patient.last_name}</ModalHeader>
             <ModalCloseButton />

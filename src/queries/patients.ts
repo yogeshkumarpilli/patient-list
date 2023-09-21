@@ -181,7 +181,7 @@ export const useDeletePatient = (id: string) => {
     isClosable: true,
   })
 
-  return useMutation<Patient, { reason: string, parameters: string[] }, Omit<Patient, 'id' | 'creation_date'>>({
+  return useMutation<Patient, { reason: string, parameters: string[] }>({
     async mutationFn() {
       const resp = await fetch(`/api/patients/${id}`, {
         method: 'DELETE',
