@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useState, useEffect } from "react";
 import { PatientIndication } from "./queries/patients";
 
 export const dateStringToAge = (date: string): number => {
