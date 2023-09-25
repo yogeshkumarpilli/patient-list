@@ -27,12 +27,11 @@ export const patientKeyToString = (key: string): string => {
 
 export function useField<T = string>(defaultValue?: T) {
   const [value, setValue] = useState(defaultValue);
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
+
   const onChange = useCallback((evt: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setValue(evt.target.value as T);
   }, []);
+
   return {
     onChange,
     setValue,
