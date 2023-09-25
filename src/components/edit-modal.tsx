@@ -24,6 +24,7 @@ interface Props {
   patient: Patient,
 } 
 export const EditModal: FC<Props> = ({ patient }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const updatePatient = useUpdatePatient(patient.id);
   const firstName = useField(patient.first_name);
   const lastName = useField(patient.last_name);
@@ -45,19 +46,15 @@ export const EditModal: FC<Props> = ({ patient }) => {
         navigate('/');
       }
     })
-  }, [updatePatient, firstName.value, lastName.value, birthDate.value, indication.value, navigate]);
+  }, [updatePatient, firstName.value, lastName.value, birthDate.value, indication.value, onClose, navigate]);
   
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
   return (
     <VStack
     onSubmit={onSubmit}
     as="form"
     >
       <MenuItem
-        onClick={() => {
-          onOpen()
-        }}
+        onClick={onOpen}
       >
         Edit
       </MenuItem>
@@ -82,7 +79,7 @@ export const EditModal: FC<Props> = ({ patient }) => {
 
             <FormControl isRequired>
               <FormLabel>Birth date</FormLabel>
-              <Input value={birthDate.value?.split('T')[0]} onChange={birthDate.onChange} type="date" />
+              <Input value={birthDate.value? new Date(birthDate.value).toISOString().split('T')[0]: undefined} onChange={birthDate.onChange} type="date" />
             </FormControl>
 
             <FormControl isRequired>

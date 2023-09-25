@@ -19,6 +19,7 @@ interface Props {
   patient: Patient,
 } 
 export const DeleteModal: FC<Props> = ({ patient }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const deletePatient = useDeletePatient(patient.id);
 
   const navigate = useNavigate();
@@ -32,36 +33,33 @@ export const DeleteModal: FC<Props> = ({ patient }) => {
         navigate('/');
       }
     })
-  }, [deletePatient, navigate]);
+  }, [deletePatient, onclose, navigate]);
   
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    return (
-      <VStack
+  return (
+    <VStack
+    >
+      <MenuItem
+        onClick={onOpen}
       >
-        <MenuItem
-          onClick={() => {
-            onOpen()
-          }}
-        >
-          Delete
-        </MenuItem>
-        <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay
-          bg='blackAlpha.300'
-          backdropFilter='blur(10px) hue-rotate(90deg)'
-        />
-          <ModalContent>
-            <ModalHeader>Delete patient {patient.first_name} {patient.last_name}</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-                Are you sure you want to delete this patient? This actions is irreversible.
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={onClose}>Cancel</Button>
-              <Button type="submit" variant='ghost'onClick={onSubmit}>Delete</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </VStack>
-    )
-  }
+        Delete
+      </MenuItem>
+      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay
+        bg='blackAlpha.300'
+        backdropFilter='blur(10px) hue-rotate(90deg)'
+      />
+        <ModalContent>
+          <ModalHeader>Delete patient {patient.first_name} {patient.last_name}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+              Are you sure you want to delete this patient? This actions is irreversible.
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>Cancel</Button>
+            <Button type="submit" variant='ghost'onClick={onSubmit}>Delete</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </VStack>
+  )
+}
