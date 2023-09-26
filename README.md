@@ -13,7 +13,7 @@ During this ~2h session, we will evalutate your skills on multiple aspects! It's
 We are trying to build the E2Es pipeline to fully cover the application and avoid regressions for futur developments. We expect you to write E2Es tests to cover all the application features and edge cases thay may be found. 
 
 In this application, you should be able to do : 
-- Create new patient
+- Create new patient, edit and remove patients
 - Filter the patients' list based on the patient's name, the indication and the age
 - Sorting the table based on a column
 
