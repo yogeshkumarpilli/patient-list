@@ -33,7 +33,7 @@ You can choose any of those frameworks, but we expect a clean file structure on 
 
 ## Share with us
 
-If you are using a private repository on Github, add us as collaborator (xx, xx , xx) so we can have access to your homework.
+If you are using a private repository on Github, add us as collaborator ([`baptooo`](https://github.com/baptooo), [`mathieu-schnoor`](https://github.com/mathieu-schnoor) , [`gserrell`](https://github.com/gserrell)) so we can have access to your homework.
 
 Otheriwse, share us your code in a zip file ( using this git archive --format zip --output /full/path/to/zipfile.zip master ).
 ## Install
