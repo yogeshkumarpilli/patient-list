@@ -16,10 +16,11 @@ test("should add a patient", async ({ page }) => {
   await page.keyboard.type("Paul");
   await page.locator(".chakra-input").nth(2).click();
   await page.keyboard.type("10/10/1980");
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("P");
-  await page.getByText("Invite").first().click();
+  // Need to add the indications Selection from the drop down
+  // Select 'Post_TAVI' from the dropdown using the <select> element's ID
+  await page.locator('select[class="chakra-select css-9zgf1d"]').selectOption('post_tavi');
+  // Modified the invite button click action
+  await page.click("'Invite'")
 
   await expect(page.locator("tr").nth(1)).toContainText("Atreides Paul");
 });
