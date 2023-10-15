@@ -23,7 +23,9 @@ test("should add a patient", async ({ page }) => {
   await page.click("'Invite'")
 
   await expect(page.locator("tr").nth(1)).toContainText("Atreides Paul");
+  await page.waitForTimeout(3000);
 });
+
 
 test("should add pediatric patient", async ({ page }) => {
   await page.goto("http://localhost:5173/");
@@ -41,7 +43,8 @@ test("should add pediatric patient", async ({ page }) => {
   // Select 'Palpitations' from the dropdown using the <select> element's ID
   await page.locator('select[class="chakra-select css-9zgf1d"]').selectOption('palpitations');
   // Modified the invite button click action
-  await page.click("'Invite'")
+  await page.click("'Invite'");
 
+  
   await expect(page.locator("tr").nth(1)).toContainText("Atreides Leto");
 });
