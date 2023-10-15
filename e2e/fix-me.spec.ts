@@ -33,11 +33,15 @@ test("should add pediatric patient", async ({ page }) => {
   await page.locator(".chakra-input").nth(1).click();
   await page.keyboard.type("Leto");
   await page.locator(".chakra-input").nth(2).click();
-  await page.keyboard.type("10/10/20020");
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("P");
-  await page.getByText("Invite").first().click();
+
+  // Modify the Date of Birth Year from 20020 to 2020
+  await page.keyboard.type("10/10/2020");
+
+  // Need to add the indications Selection from the drop down
+  // Select 'Palpitations' from the dropdown using the <select> element's ID
+  await page.locator('select[class="chakra-select css-9zgf1d"]').selectOption('palpitations');
+  // Modified the invite button click action
+  await page.click("'Invite'")
 
   await expect(page.locator("tr").nth(1)).toContainText("Atreides Leto");
 });
